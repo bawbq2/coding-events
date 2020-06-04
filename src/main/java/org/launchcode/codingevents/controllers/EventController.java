@@ -42,7 +42,11 @@ public class EventController {
         return "redirect:";
     }
 
-
+@GetMapping("events/{id}")
+public String show(Model model, @PathVariable int id) {
+        model.addAttribute("event", EventData.getById(id));
+        return "events/show";
+}
 
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model){
