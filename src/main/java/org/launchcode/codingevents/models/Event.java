@@ -9,10 +9,17 @@ public class Event {
 
     private String name;
     private String description;
+    private String date;
+    private String location;
+    private String price;
 
-    public Event(String name, String description) {
+    public Event(String name, String description, String date, String location, String price) {
         this.name = name;
         this.description = description;
+        this.date = date;
+        this.location = location;
+        this.price = price;
+
         this.id = nextId;
         nextId++;
     }
@@ -35,6 +42,30 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override
