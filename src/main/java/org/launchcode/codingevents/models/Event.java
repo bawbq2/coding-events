@@ -1,5 +1,7 @@
 package org.launchcode.codingevents.models;
 
+
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -7,13 +9,22 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
+    @NotBlank
+    @Size(min=3, max=50, message = "Name must be between 3 and 50 characters.")
     private String name;
+
+    @Size(max = 500, message = "Description too long!")
     private String description;
+
+    @NotBlank
+    @Email(message = "Invalid Email. Try Again.")
+    private String contactEmail;
+
     private String date;
     private String location;
     private String price;
 
-    public Event(String name, String description, String date, String location, String price) {
+    public Event(String name, String description, String date, String location, String price, String contactEmail) {
         this.name = name;
         this.description = description;
         this.date = date;
@@ -66,6 +77,14 @@ public class Event {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     @Override
