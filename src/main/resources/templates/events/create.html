@@ -10,19 +10,44 @@
 
 <nav th:replace ="fragments :: navigation"></nav>
 <!--<p th:text = "${errorMsg}" style = "color:red;"></p>-->
+<!--<p th:text = "${errorMsg}" style = "color:red;"></p>-->
+
 
 <form method = "post" action="/events/create">
     <div class="form-group">
         <label> Name
             <input th:field="${event.name}" class="form-control">
         </label>
-        <p class = "error" th:errors = "${event.name}"></p>
+        <p class = "alert alert-danger" th:errors = "${event.name}"></p>
     </div>
     <div class="form-group">
         <label> Description
             <input th:field="${event.description}" class="form-control">
         </label>
-        <p class = "error" th:errors = "${event.description}"></p>
+        <p class = "alert alert-warning" th:errors = "${event.description}"></p>
+    </div>
+<!--    <div class="form-group">-->
+<!--        <label> Type-->
+<!--            <select th:field="${event.type}" class="form-control">-->
+<!--                <option-->
+<!--                    th:each ="type : ${types}"-->
+<!--                    th:value = ${type}-->
+<!--                    th:text = "${type.displayName}"-->
+<!--                ></option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    <div class = "form-group">-->
+        <label>Type
+        <select th:field = "${event.type}">
+            <option
+                    th:each="type : ${types}"
+                    th:value = ${type}
+                    th:text = "${type.displayName}"
+                    ></option>
+        </select></label>
+
+    </div>
+<!--        <p class = "alert alert-warning" th:errors = "${event.type}"></p>-->
     </div>
     <div class="form-group">
         <label> Contact Email
@@ -32,18 +57,21 @@
     </div>
     <div class="form-group">
         <label> Date
-            <input type = "date" name = "date" class="form-control">
+            <input th:field="${event.date}"class="form-control">
         </label>
+        <p class = "error" th:errors = "${event.date}"></p>
     </div>
     <div class="form-group">
         <label> Location
-            <input type = "text" name = "location" class="form-control">
+            <input th:field="${event.location}" class="form-control">
         </label>
+        <p class = "error" th:errors = "${event.location}"></p>
     </div>
     <div class="form-group">
         <label> Price
-            <input type = "text" name = "price" class="form-control">
+            <input th:field="${event.price}" class="form-control">
         </label>
+        <p class = "error" th:errors = "${event.price}"></p>
     </div>
     <div class="form-group">
         <input type = "submit" value = "Create Event" class = "btn btn-success">

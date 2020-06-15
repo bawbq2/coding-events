@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,6 +34,7 @@ public class EventController {
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
+        model.addAttribute("types", EventType.values());
         return "events/create";
     }
 
@@ -42,14 +44,16 @@ public class EventController {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
 //            model.addAttribute("errorMsg", "Bad data!");
+//            model.addAttribute("types", EventTypeAlpha.values());
+            model.addAttribute("types", EventType.values());
             return "events/create";
         }
         EventData.add(newEvent);
         return "redirect:";
     }
 
-@GetMapping("events/{id}")
-public String show(Model model, @PathVariable int id) {
+    @GetMapping("events/{id}")
+    public String show(Model model, @PathVariable int id) {
         model.addAttribute("event", EventData.getById(id));
         return "events/show";
 }

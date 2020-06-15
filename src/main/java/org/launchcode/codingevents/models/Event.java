@@ -1,7 +1,11 @@
 package org.launchcode.codingevents.models;
 
 
-import javax.validation.constraints.*;
+import org.launchcode.codingevents.enums.EventTypeAlpha;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Event {
@@ -13,6 +17,7 @@ public class Event {
     @Size(min=3, max=50, message = "Name must be between 3 and 50 characters.")
     private String name;
 
+    @NotBlank(message = "You must enter a description")
     @Size(max = 500, message = "Description too long!")
     private String description;
 
@@ -20,22 +25,37 @@ public class Event {
     @Email(message = "Invalid Email. Try Again.")
     private String contactEmail;
 
+    @NotBlank(message = "you must enter a date")
     private String date;
+
+    @NotBlank(message = "you must enter a location")
     private String location;
+
+    @NotBlank(message = "you must enter a price")
     private String price;
 
-    public Event(String name, String description, String date, String location, String price, String contactEmail) {
+    private EventTypeAlpha typeAlpha;
+
+    private EventType type;
+
+    public Event(String name, String description, String date, String location, String price, String contactEmail, EventTypeAlpha typeAlpha, EventType type) {
+        this();
         this.name = name;
         this.description = description;
         this.date = date;
         this.location = location;
         this.price = price;
+        this.typeAlpha = typeAlpha;
+        this.type = type;
 
+//        this.id = nextId;
+//        nextId++;
+    }
+
+    public Event(){
         this.id = nextId;
         nextId++;
     }
-
-    public Event(){}
 
     public String getName() {
         return name;
@@ -87,6 +107,22 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public EventTypeAlpha getTypeAlpha() {
+        return typeAlpha;
+    }
+
+    public void setTypeAlpha(EventTypeAlpha typeAlpha) {
+        this.typeAlpha = typeAlpha;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     @Override
