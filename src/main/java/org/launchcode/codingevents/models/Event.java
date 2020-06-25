@@ -1,7 +1,6 @@
 package org.launchcode.codingevents.models;
 
 
-import org.launchcode.codingevents.enums.EventTypeAlpha;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -34,18 +33,16 @@ public class Event {
     @NotBlank(message = "you must enter a price")
     private String price;
 
-    private EventTypeAlpha typeAlpha;
 
     private EventType type;
 
-    public Event(String name, String description, String date, String location, String price, String contactEmail, EventTypeAlpha typeAlpha, EventType type) {
+    public Event(String name, String description, String date, String location, String price, String contactEmail, EventType type) {
         this();
         this.name = name;
         this.description = description;
         this.date = date;
         this.location = location;
         this.price = price;
-        this.typeAlpha = typeAlpha;
         this.type = type;
 
 //        this.id = nextId;
@@ -107,14 +104,6 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
-    }
-
-    public EventTypeAlpha getTypeAlpha() {
-        return typeAlpha;
-    }
-
-    public void setTypeAlpha(EventTypeAlpha typeAlpha) {
-        this.typeAlpha = typeAlpha;
     }
 
     public EventType getType() {
