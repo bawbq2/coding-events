@@ -81,12 +81,12 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("edit/{eventId}")
-    public String displayEditForm(Model model, @PathVariable int eventId) {
-        model.addAttribute("title", "Edit Event " + eventRepository.findById(eventId) + " (id = " +eventId + ")");
-        model.addAttribute("event", eventRepository.findById(eventId));
-        return "events/edit";
-    }
+//    @GetMapping("edit/{eventId}")
+//    public String displayEditForm(Model model, @PathVariable int eventId) {
+//        model.addAttribute("title", "Edit Event " + eventRepository.findById(eventId) + " (id = " +eventId + ")");
+//        model.addAttribute("event", eventRepository.findById(eventId));
+//        return "events/edit";
+//    }
 
 //    @PostMapping("edit")
 //    public String processEditForm(int eventId, String name, String description) {
