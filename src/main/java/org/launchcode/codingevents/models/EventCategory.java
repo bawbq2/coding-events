@@ -2,27 +2,24 @@ package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class EventCategory extends AbstractEntity{
 
-//    @Id
-//    @GeneratedValue
-//    private int id;
 
+    @Size(min=3, message = "Name must be at least 3 characters long")
     @NotBlank
     private String name;
 
-    public EventCategory(String name) {
-//        this.id = id;
+//    private final List<Event> events = new ArrayList<>();
+
+    public EventCategory( @Size(min=3, message = "Name must be at least 3 characters long") String name) {
         this.name = name;
     }
 
     public EventCategory(){}
 
-//    public int getId() {
-//        return id;
-//    }
 
     public String getName() {
         return name;
@@ -32,16 +29,4 @@ public class EventCategory extends AbstractEntity{
         this.name = name;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof EventCategory)) return false;
-//        EventCategory that = (EventCategory) o;
-//        return getId() == that.getId();
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getId());
-//    }
 }
