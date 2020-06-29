@@ -1,14 +1,13 @@
 package org.launchcode.codingevents.models;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Event extends AbstractEntity{
@@ -43,8 +42,8 @@ public class Event extends AbstractEntity{
     @NotNull(message = "category is required")
     private EventCategory eventCategory;
 
-//    @ManyToMany
-//    private final List<Tag> tags = new ArrayList<>();
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
     public Event(String name, EventCategory eventCategory) {
 //        this();
@@ -73,50 +72,6 @@ public class Event extends AbstractEntity{
         this.name = name;
     }
 
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-
-//    public int getId() {
-//        return id;
-//    }
-
-//    public String getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
-//
-//    public String getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
-//
-//    public String getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(String price) {
-//        this.price = price;
-//    }
-//
-//    public String getContactEmail() {
-//        return contactEmail;
-//    }
-//
-//    public void setContactEmail(String contactEmail) {
-//        this.contactEmail = contactEmail;
-//    }
-
     public EventCategory getEventCategory() {
         return eventCategory;
     }
@@ -133,21 +88,16 @@ public class Event extends AbstractEntity{
         this.eventDetails = eventDetails;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
     @Override
     public String toString() {
         return name;
     }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Event)) return false;
-//        Event event = (Event) o;
-//        return getId() == event.getId();
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getId());
-//    }
+
 }
