@@ -89,6 +89,21 @@ public class EventController {
         return "redirect:";
     }
 
+    @GetMapping("detail")
+    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        if(result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = result.get();
+            model.addAttribute("title", event.getName() + " Details");
+            model.addAttribute("event", event);
+        }
+        return "events/detail";
+    }
+
 //    @GetMapping("edit/{eventId}")
 //    public String displayEditForm(Model model, @PathVariable int eventId) {
 //        model.addAttribute("title", "Edit Event " + eventRepository.findById(eventId) + " (id = " +eventId + ")");
